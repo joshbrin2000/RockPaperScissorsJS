@@ -1,5 +1,5 @@
 function getComputerChoice(){
-    randInt = Math.floor(Math.random() * 3)
+    let randInt = Math.floor(Math.random() * 3)
     switch (randInt){
         case 0:
             return "rock";
@@ -13,33 +13,34 @@ function getComputerChoice(){
 }
 
 function singleRound(playerSelection, computerSelection){
-    playerSelection = playerSelection.toLowerCase()
+    let playerSelection = playerSelection.toLowerCase()
     if (playerSelection === computerSelection){
-        console.log("Game Round: Tie!")
+        console.log("Game Round: Tie!");
         return 0;
     }
     else if ((playerSelection === "rock" && computerSelection === "scissors") 
     || (playerSelection === "paper" && computerSelection === "rock") 
     || (playerSelection === "scissors" && computerSelection === "paper")){
-        console.log(`You Win This Round! ${playerSelection} beats ${computerSelection}`)
+        console.log(`You Win This Round! ${playerSelection} beats ${computerSelection}`);
         return 1;
     }
     else {
-        console.log(`You Lose This Round! ${playerSelection} loses to ${computerSelection}`)
+        console.log(`You Lose This Round! ${playerSelection} loses to ${computerSelection}`);
         return -1;
     }
 }
 
 function game(){
-    rounds = 5;
-    input = "";
-    sum = 0;
-    checkArray = ["rock", "paper", "scissors"]
+    let result;
+    let rounds = 5;
+    let input = "";
+    let sum = 0;
+    let checkArray = ["rock", "paper", "scissors"];
     while (rounds-- > 0){
         while (!input)
         {
-            input = prompt("Rock, Paper, or Scissors?")
-            input = input.toLowerCase()
+            let input = prompt("Rock, Paper, or Scissors?");
+            input = input.toLowerCase();
             if (checkArray.includes(input)){
                 continue;
             }
@@ -48,20 +49,20 @@ function game(){
                 input = "";
             }
         }
-        compGen = getComputerChoice();
+        let compGen = getComputerChoice();
         result = singleRound(input, compGen);
         sum += result;
         input = "";
     }
     if (sum > 0){
-        console.log("You Win The Game!")
+        console.log("You Win The Game!");
     }
     else if (sum < 0){
-        console.log("You Lose The Game!")
+        console.log("You Lose The Game!");
     }
     else{
-        console.log("You Tied With The Computer!")
+        console.log("You Tied With The Computer!");
     }
 }
 
-game()
+game();
