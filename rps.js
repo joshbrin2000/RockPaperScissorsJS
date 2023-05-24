@@ -3,23 +3,35 @@ function getComputerChoice(){
     switch (randInt){
         case 0:
             return "rock";
-            break;
         case 1:
             return "paper";
-            break;
         case 2:
             return "scissors";
-            break;
         default:
-            return null
+            return null;
     }
 }
 
 function singleRound(playerSelection, computerSelection){
     playerSelection = playerSelection.toLowerCase()
-    if ((playerSelection === "rock" && computerSelection === "scissors") 
+    if (playerSelection === computerSelection){
+        return "Tie!";
+    }
+    else if ((playerSelection === "rock" && computerSelection === "scissors") 
     || (playerSelection === "paper" && computerSelection === "rock") 
     || (playerSelection === "scissors" && computerSelection === "paper")){
-        
+        return `You Win! ${playerSelection} beats ${computerSelection}`;
+    }
+    else {
+        return `You Lose! ${computerSelection} beats ${playerSelection}`;
     }
 }
+
+function game(){
+    rounds = 5;
+    while (rounds-- > 0){
+        console.log("loop")
+    }
+}
+
+game()
