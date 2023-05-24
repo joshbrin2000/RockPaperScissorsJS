@@ -29,9 +29,23 @@ function singleRound(playerSelection, computerSelection){
 
 function game(){
     rounds = 5;
+    input = "";
+    checkArray = ["rock", "paper", "scissors"]
     while (rounds-- > 0){
-        console.log("loop")
+        while (!input)
+        {
+            input = prompt("rock, paper, or scissors?")
+            input = input.toLowerCase()
+            if (checkArray.includes(input)){
+                continue;
+            }
+            else{
+                console.log("Please input a valid choice");
+                input = "";
+            }
+        }
     }
+    
 }
 
 game()
