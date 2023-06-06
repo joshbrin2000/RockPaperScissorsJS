@@ -15,38 +15,48 @@ function getComputerChoice(){
 function singleRound(playerSelection, computerSelection){
     playerSelection = playerSelection.toLowerCase()
     if (playerSelection === computerSelection){
-        console.log("Game Round: Tie!");
+        //console.log("Game Round: Tie!");
+        divUpdate("Game Round: Tie!")
         return 0;
     }
     else if ((playerSelection === "rock" && computerSelection === "scissors") 
     || (playerSelection === "paper" && computerSelection === "rock") 
     || (playerSelection === "scissors" && computerSelection === "paper")){
-        console.log(`You Win This Round! ${playerSelection} beats ${computerSelection}`);
+        //console.log(`You Win This Round! ${playerSelection} beats ${computerSelection}`);
+        divUpdate(`You Win This Round! ${playerSelection} beats ${computerSelection}`)
         return 1;
     }
     else {
-        console.log(`You Lose This Round! ${playerSelection} loses to ${computerSelection}`);
+        //console.log(`You Lose This Round! ${playerSelection} loses to ${computerSelection}`);
+        divUpdate(`You Lose This Round! ${playerSelection} loses to ${computerSelection}`)
         return -1;
     }
 }
 
-function game(){
+function divUpdate(text){
+    const temp = document.querySelector('#result-div');
+    temp.textContent = text
+}
+
+function game(num){
     let result;
-    let input = "r";
+    let input = "";
+    num = Number(num);
+    //console.log(num);
     let sum = 0;
-    let checkArray = ["rock", "paper", "scissors"];
-    while (!input)
-    {
-        //input = prompt("Rock, Paper, or Scissors?");
-        input = input.toLowerCase();
-        console.log(input)
-        if (checkArray.includes(input)){
-            continue;
-        }
-        else{
-            console.log("Please input a valid choice...");
-            input = "";
-        }
+    switch (num){
+        case 1:
+            input = "rock";
+            break;
+        case 2:
+            input = "paper";
+            break;
+        case 3:
+            input = "scissors";
+            break;
+        default:
+            input = "critical error";
+            break;
     }
     let compGen = getComputerChoice();
     result = singleRound(input, compGen);
@@ -64,9 +74,9 @@ function game(){
 }
 
 
-const btn1 = document.querySelector('#button1');
-btn1.addEventListener('click', () => {
-    alert("Hello World");
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        game(button.id);
+    });
 });
-
-game();
