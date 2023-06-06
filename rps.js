@@ -1,3 +1,6 @@
+let playerSum = 0;
+let compSum = 0;
+
 function getComputerChoice(){
     let randInt = Math.floor(Math.random() * 3)
     switch (randInt){
@@ -35,7 +38,23 @@ function singleRound(playerSelection, computerSelection){
 
 function divUpdate(text){
     const temp = document.querySelector('#result-div');
-    temp.textContent = text
+    temp.textContent = text;
+}
+
+function scoreUpdate(scorePlayer, scoreComp){
+    const temp = document.querySelector('#score');
+    temp.textContent = `Score - Player: ${scorePlayer}      Computer: ${scoreComp}`;
+}
+
+function winUpdate(bool){
+    const temp = document.querySelector('#win');
+    if (bool === true){
+        temp.textContent = "You Win The Game!";
+    }
+    else{
+        temp.textContent = "You Lose The Game!";
+    }
+
 }
 
 function game(num){
@@ -43,7 +62,6 @@ function game(num){
     let input = "";
     num = Number(num);
     //console.log(num);
-    let sum = 0;
     switch (num){
         case 1:
             input = "rock";
@@ -60,16 +78,22 @@ function game(num){
     }
     let compGen = getComputerChoice();
     result = singleRound(input, compGen);
-    sum += result;
-    input = "";
-    if (sum > 0){
-        console.log("You Win The Game!");
+    switch(result){
+        case 1:
+            playerSum += 1;
+            break;
+        case -1:
+            compSum += 1;
+            break;
+        default:
+            break;
     }
-    else if (sum < 0){
-        console.log("You Lose The Game!");
+    scoreUpdate(playerSum, compSum);
+    if (playerSum >= 5){
+        winUpdate(true);
     }
-    else{
-        console.log("You Tied With The Computer!");
+    else if (compSum >= 5){
+        winUpdate(false);
     }
 }
 
