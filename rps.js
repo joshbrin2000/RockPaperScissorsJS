@@ -13,7 +13,7 @@ function getComputerChoice(){
 }
 
 function singleRound(playerSelection, computerSelection){
-    let playerSelection = playerSelection.toLowerCase()
+    playerSelection = playerSelection.toLowerCase()
     if (playerSelection === computerSelection){
         console.log("Game Round: Tie!");
         return 0;
@@ -32,28 +32,26 @@ function singleRound(playerSelection, computerSelection){
 
 function game(){
     let result;
-    let rounds = 5;
-    let input = "";
+    let input = "r";
     let sum = 0;
     let checkArray = ["rock", "paper", "scissors"];
-    while (rounds-- > 0){
-        while (!input)
-        {
-            let input = prompt("Rock, Paper, or Scissors?");
-            input = input.toLowerCase();
-            if (checkArray.includes(input)){
-                continue;
-            }
-            else{
-                console.log("Please input a valid choice...");
-                input = "";
-            }
+    while (!input)
+    {
+        //input = prompt("Rock, Paper, or Scissors?");
+        input = input.toLowerCase();
+        console.log(input)
+        if (checkArray.includes(input)){
+            continue;
         }
-        let compGen = getComputerChoice();
-        result = singleRound(input, compGen);
-        sum += result;
-        input = "";
+        else{
+            console.log("Please input a valid choice...");
+            input = "";
+        }
     }
+    let compGen = getComputerChoice();
+    result = singleRound(input, compGen);
+    sum += result;
+    input = "";
     if (sum > 0){
         console.log("You Win The Game!");
     }
@@ -64,5 +62,11 @@ function game(){
         console.log("You Tied With The Computer!");
     }
 }
+
+
+const btn1 = document.querySelector('#button1');
+btn1.addEventListener('click', () => {
+    alert("Hello World");
+});
 
 game();
